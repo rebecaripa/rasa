@@ -11,3 +11,8 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
+
+- rule: Lanzar proceso de crear cuenta
+  steps:
+  - intent: on_boarding
+  - action: utter_on_boarding

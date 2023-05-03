@@ -89,3 +89,10 @@ stories:
       are you a bot?
     intent: bot_challenge
   - action: utter_iamabot
+
+- story: user on boarding
+  steps:
+  - user: |
+      cuenta nueva
+    intent: on_boarding
+  - action: utter_on_boarding
