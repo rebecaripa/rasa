@@ -2,36 +2,41 @@ version: "3.1"
 
 intents:
   - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
-  - on_boarding
+  - cuenta
+entities:
+  - tipo_cuenta
+
+slots:
+  tipo_cuenta:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: tipo_cuenta
 
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
+  - text: "Bienvenido al proceso de onboarding de nuestro banco. ¿Qué tipo de cuenta deseas abrirte?"
+    buttons:
+    - title: 'Cuenta joven'
+      #payload: '/cuenta{"tipo_cuenta":"joven"}'
+      payload: "cuenta joven"
+    - title: 'Cuenta plus'
+      #payload: '/cuenta{"tipo_cuenta":"plus"}'
+      payload: "cuenta plus"
 
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+  utter_cuenta:
+  - text: "Claro, te ayudaré a crearte una cuenta {tipo_cuenta}. Por favor, envía una foto de tu DNI."
 
-  utter_did_that_help:
-  - text: "Did that help you?"
-
-  utter_happy:
-  - text: "Great, carry on!"
-
-  utter_goodbye:
-  - text: "Bye"
-
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
-
-  utter_on_boarding:
-  - text: "Claro, te ayudaré a crearte una cuenta nueva"
+  utter_cuenta_tipo:
+    - text: "Podrías especificar si quieres crearte una cuenta joven o una cuenta plus"
+      buttons:
+      - title: 'Cuenta joven'
+        #payload: '/cuenta{"tipo_cuenta":"joven"}'
+        payload: "cuenta joven"
+      - title: 'Cuenta plus'
+        #payload: '/cuenta{"tipo_cuenta":"plus"}'
+        payload: "cuenta plus"
 
 session_config:
   session_expiration_time: 60

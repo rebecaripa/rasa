@@ -1,18 +1,23 @@
 version: "3.1"
 
 rules:
-
-- rule: Say goodbye anytime the user says goodbye
+- rule: No dice cuenta si el usuario ha dicho tipo de cuenta
+  condition:
+  - slot_was_set:
+    - tipo_cuenta: null
   steps:
-  - intent: goodbye
-  - action: utter_goodbye
+  - intent: cuenta
+  - action: utter_cuenta_tipo
 
-- rule: Say 'I am a bot' anytime the user challenges
+- rule: Ya nos ha pedido un tipo de cuenta
+  condition:
+  - slot_was_set:
+    - tipo_cuenta: null
   steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
+  - intent: cuenta
+  - action: utter_cuenta_tipo
 
-- rule: Lanzar proceso de crear cuenta
-  steps:
-  - intent: on_boarding
-  - action: utter_on_boarding
+
+#hacer fallback
+#configurar negacion y afirmación en función del intent previo
+#borrar slots previos o hacer un fallback por si nos dice una segunda vez algo ya rellenado.

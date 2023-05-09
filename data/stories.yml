@@ -2,29 +2,28 @@ version: "3.1"
 
 stories:
 
-- story: happy path
+- story: Presentarse al usuario y ofrecerle un tipo de cuenta
   steps:
   - intent: greet
   - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
+  - intent: cuenta
+  - or:
+    - slot_was_set:
+      - tipo_cuenta: joven
+    - slot_was_set:
+      - tipo_cuenta: plus
+  - action: utter_cuenta
 
-- story: sad path 1
+- story: El usuario nos pide una cuenta nueva sin especificar
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
-
-- story: sad path 2
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
+  - intent: cuenta
+  - slot_was_set:
+    - tipo_cuenta: null
+  - action: utter_cuenta_tipo
+  - intent: cuenta
+  - or:
+    - slot_was_set:
+      - tipo_cuenta: joven
+    - slot_was_set:
+      - tipo_cuenta: plus
+  - action: utter_cuenta 
