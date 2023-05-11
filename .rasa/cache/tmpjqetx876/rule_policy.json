@@ -1,0 +1,20 @@
+{
+  "lookup": {
+    "rules": {
+      "[{}]": "action_listen",
+      "[{}, {\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"greet\"}}]": "utter_greet",
+      "[{}, {\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"greet\"}}, {\"prev_action\": {\"action_name\": \"utter_greet\"}, \"user\": {\"intent\": \"greet\"}}]": "utter_tipo_cuenta",
+      "[{}, {\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"greet\"}}, {\"prev_action\": {\"action_name\": \"utter_greet\"}, \"user\": {\"intent\": \"greet\"}}, {\"prev_action\": {\"action_name\": \"utter_tipo_cuenta\"}, \"user\": {\"intent\": \"greet\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"slots\": {\"tipo_cuenta\": \"should_not_be_set\"}, \"user\": {\"intent\": \"cuenta\"}}]": "utter_cuenta_tipo",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"slots\": {\"tipo_cuenta\": \"should_not_be_set\"}, \"user\": {\"intent\": \"cuenta\"}}, {\"prev_action\": {\"action_name\": \"utter_cuenta_tipo\"}, \"slots\": {\"tipo_cuenta\": \"should_not_be_set\"}, \"user\": {\"intent\": \"cuenta\"}}]": "action_listen"
+    },
+    "rule_only_slots": [],
+    "rule_only_loops": [],
+    "rules_for_loop_unhappy_path": {},
+    "rules_not_in_stories": [
+      "predicting default action with intent back",
+      "predicting default action with intent restart",
+      "predicting default action with intent session_start"
+    ]
+  }
+}

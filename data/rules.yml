@@ -1,6 +1,13 @@
 version: "3.1"
 
 rules:
+- rule: Saludar al usuario
+  conversation_start: true  # this rule only applies at the beginning of a conversation
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_tipo_cuenta
+
 - rule: No dice cuenta si el usuario ha dicho tipo de cuenta
   condition:
   - slot_was_set:
@@ -9,14 +16,24 @@ rules:
   - intent: cuenta
   - action: utter_cuenta_tipo
 
-- rule: Ya nos ha pedido un tipo de cuenta
-  condition:
-  - slot_was_set:
-    - tipo_cuenta: null
+- rule: No confirma su tipo de cuenta y datos
   steps:
-  - intent: cuenta
-  - action: utter_cuenta_tipo
+  - intent: negacion
+  - action: action_reset_slot
+  - action: utter_tipo_cuenta
 
+- rule: Usuario nos da su email y lo validamos
+  steps:
+  - intent: identificacion_email
+  - slot_was_set:
+    - email: email
+  - action: utter_despedida
+
+
+- rule: Si no entendendemos, pedimos refrasear
+  steps:
+  - intent: nlu_fallback
+  - action: utter_fallback
 
 #hacer fallback
 #configurar negacion y afirmación en función del intent previo

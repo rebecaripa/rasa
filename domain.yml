@@ -3,8 +3,13 @@ version: "3.1"
 intents:
   - greet
   - cuenta
+  - afirmacion
+  - negacion
+  - identificacion_email
+
 entities:
   - tipo_cuenta
+  - email
 
 slots:
   tipo_cuenta:
@@ -13,10 +18,20 @@ slots:
     mappings:
     - type: from_entity
       entity: tipo_cuenta
+  email:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: email
+
 
 responses:
   utter_greet:
-  - text: "Bienvenido al proceso de onboarding de nuestro banco. ¿Qué tipo de cuenta deseas abrirte?"
+  - text: "Bienvenido al proceso de onboarding de nuestro banco."
+  
+  utter_tipo_cuenta:
+  - text: ¿Qué tipo de cuenta deseas abrirte?"
     buttons:
     - title: 'Cuenta joven'
       #payload: '/cuenta{"tipo_cuenta":"joven"}'
@@ -26,7 +41,7 @@ responses:
       payload: "cuenta plus"
 
   utter_cuenta:
-  - text: "Claro, te ayudaré a crearte una cuenta {tipo_cuenta}. Por favor, envía una foto de tu DNI."
+  - text: "Claro, te ayudaré a crearte una cuenta. Por favor, envía una foto de tu DNI."
 
   utter_cuenta_tipo:
     - text: "Podrías especificar si quieres crearte una cuenta joven o una cuenta plus"
@@ -37,6 +52,22 @@ responses:
       - title: 'Cuenta plus'
         #payload: '/cuenta{"tipo_cuenta":"plus"}'
         payload: "cuenta plus"
+
+  utter_confirmacion:
+    - text: "Tu documento de DNI es válido. Por favor, confirma que quieres crear una cuenta {tipo_cuenta}"
+
+  utter_ask_email:
+    - text: "Por favor, introduce tu email y te mandaremos una copia del contrato para que puedas firmarla"
+
+  utter_despedida:
+    - text: "Vale, muchas gracias, te hemos enviado el email"
+
+  utter_fallback:
+    - text: "Lo siento, no te he entendido. ¿Puedes reformular?"
+
+actions:
+- action_reset_slot
+- action_restart
 
 session_config:
   session_expiration_time: 60

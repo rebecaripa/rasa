@@ -38,6 +38,54 @@ nlu:
     - quiero hacerme una cuenta nueva 
     - hacer cuenta nueva
 
+- intent: identificacion_email
+  examples: |
+    - mi email es [prueba@gmail.com]{"entity":"email"}
+    - mi correo electrónico es [prueba@gmail.com]{"entity":"email"}
+    - email [Intentó@gmail.com]{"entity":"email"}
+    - email [prueba23@gmail.com]{"entity":"email"}
+    - [Intentó@gmail.com]{"entity":"email"}
+    - [prueba23@gmail.com]{"entity":"email"}
+
+- regex: email
+  examples: |
+    - \w+@\w+.\w+$
+
+
+- intent: afirmacion
+  examples: |
+    - sí los datos son correctos
+    - sí los datos están bien
+    - sí los datos ok
+    - sí son correctos
+    - sí están bien
+    - sí ok
+    - todo bien
+    - todo ok
+    - datos correctos
+    - tipo de cuenta correcto
+    - está bien
+    - es correcto
+    - si datos ok
+    - si es así
+
+- intent: negacion
+  examples: |    
+    - no los datos no son correctos
+    - no los datos no están bien
+    - no los datos no están ok
+    - no son correctos
+    - no están bien
+    - no están ok
+    - incorrecto
+    - datos incorrectos
+    - tipo de cuenta no correcto
+    - está mal
+    - no es correcto
+    - ese no es el tipo de cuenta que quería
+    - no está bien
+    - no es así
+
 - synonym: joven
   examples: |
     - menores de 25

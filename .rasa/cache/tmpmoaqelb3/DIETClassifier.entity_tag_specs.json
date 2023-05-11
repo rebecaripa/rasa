@@ -1,0 +1,20 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-tipo_cuenta",
+      "2": "I-tipo_cuenta",
+      "3": "L-tipo_cuenta",
+      "4": "U-tipo_cuenta",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-tipo_cuenta": 1,
+      "I-tipo_cuenta": 2,
+      "L-tipo_cuenta": 3,
+      "U-tipo_cuenta": 4,
+      "O": 0
+    },
+    "num_tags": 5
+  }
+]

@@ -6,6 +6,7 @@ stories:
   steps:
   - intent: greet
   - action: utter_greet
+  - action: utter_tipo_cuenta
   - intent: cuenta
   - or:
     - slot_was_set:
@@ -13,6 +14,8 @@ stories:
     - slot_was_set:
       - tipo_cuenta: plus
   - action: utter_cuenta
+    #falta recibir dato del envío correcto del dni
+  - action: utter_confirmacion
 
 - story: El usuario nos pide una cuenta nueva sin especificar
   steps:
@@ -26,4 +29,25 @@ stories:
       - tipo_cuenta: joven
     - slot_was_set:
       - tipo_cuenta: plus
-  - action: utter_cuenta 
+  - action: utter_cuenta
+  #falta recibir dato del envío correcto del dni
+  - action: utter_confirmacion
+  - intent: afirmacion
+
+- story: El usuario confirma sus datos y podemos avanzar
+  steps:
+  - intent: afirmacion
+  - action: utter_ask_email
+  - intent: identificacion_email
+  - slot_was_set:
+    - email: email
+  - action: utter_despedida
+  - action: action_restart
+
+- story: El usuario nos da su email y finalizamos la conversación
+  steps:
+  - intent: identificacion_email
+  - slot_was_set:
+    - email: email
+  - action: utter_despedida
+  - action: action_restart
